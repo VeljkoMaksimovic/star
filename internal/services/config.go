@@ -7,19 +7,19 @@ import (
 )
 
 type ConfigService struct {
-	repo      domain.ConfigRepo
+	Repo      domain.ConfigRepo
 	evaluator oort.OortEvaluatorClient
 }
 
 func NewConfigService(repo domain.ConfigRepo, evaluator oort.OortEvaluatorClient) (*ConfigService, error) {
 	return &ConfigService{
-		repo:      repo,
+		Repo:      repo,
 		evaluator: evaluator,
 	}, nil
 }
 
 func (c *ConfigService) Put(req domain.PutConfigGroupReq) (*domain.PutConfigGroupResp, error) {
-	err := c.repo.Put(req.Group)
+	err := c.Repo.Put(req.Group)
 	if err != nil {
 		return nil, err
 	}
@@ -45,7 +45,7 @@ func (c *ConfigService) Get(req domain.GetConfigGroupReq) (*domain.GetConfigGrou
 		return nil, domain.ErrUnauthorized()
 	}
 
-	cg, err := c.repo.Get(req.GroupId)
+	cg, err := c.Repo.Get(req.GroupId)
 	if err != nil {
 		return nil, err
 	}

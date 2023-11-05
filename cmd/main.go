@@ -13,6 +13,8 @@ import (
 
 func main() {
 	config, err := configs.NewFromEnv()
+	log.Println("Config")
+	log.Printf("%+v\n", config)
 	if err != nil {
 		log.Fatalln(err)
 	}
