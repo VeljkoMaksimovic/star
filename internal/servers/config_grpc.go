@@ -9,7 +9,6 @@ import (
 	"github.com/c12s/star/pkg/api"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"log"
 )
 
 type starConfigServer struct {
@@ -24,8 +23,7 @@ func NewStarConfigServer(service *services.ConfigService) (api.StarConfigServer,
 }
 
 func (s starConfigServer) GetConfigGroup(ctx context.Context, req *api.GetConfigGroupReq) (*api.GetConfigGroupResp, error) {
-	log.Println("Printing all groups")
-	log.Printf("%+v\n", s.service.Repo.Groups
+	s.service.Repo.Get("")
 	domainReq, err := proto.GetConfigGroupReqToDomain(req)
 	if err != nil {
 		return nil, err

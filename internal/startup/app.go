@@ -123,6 +123,7 @@ func (a *app) init() {
 
 	a.initConfigAsyncServer()
 	a.initConfigGrpcServer()
+	servers.StartHttpConfigServer(a.configService)
 	a.initGrpcServer()
 }
 

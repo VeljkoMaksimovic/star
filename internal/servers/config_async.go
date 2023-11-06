@@ -25,11 +25,15 @@ func NewConfigAsyncServer(client *kuiperapi.KuiperAsyncClient, service *services
 
 func (c *ConfigAsyncServer) Serve() {
 	err := c.client.ReceiveConfig(func(cmd *kuiperapi.ApplyConfigCommand) {
+		log.Println("New config recieved")
+		log.Printf("%+v\n", cmd)
 		req, err := proto.ApplyConfigCommandToDomain(cmd)
 		if err != nil {
 			log.Println(err)
 			return
 		}
+		log.Println("REQ")
+		log.Printf("%+v\n", req)
 		_, err = c.service.Put(*req)
 		if err != nil {
 			log.Println(err)
